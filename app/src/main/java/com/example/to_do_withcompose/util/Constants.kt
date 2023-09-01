@@ -7,8 +7,10 @@ object Constants  {
 	
 	const val LIST_SCREEN = "list/{action}"
 	const val TASK_SCREEN = "task/{taskId}"
+	const val UPDATE_SCREEN = "update/"
 	
 	const val LIST_ARGUMENT_KEY = "action"
 	const val TASK_ARGUMENT_KEY = "taskId"
+	const val UPDATE_ARGUMENT_KEY = "update"
 	
 }
