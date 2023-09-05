@@ -3,10 +3,12 @@ package com.example.to_do_withcompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.to_do_withcompose.navigation.SetupNavigation
 import com.example.to_do_withcompose.ui.theme.To_Do_WithComposeTheme
+import com.example.to_do_withcompose.ui.viewModels.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -24,16 +26,20 @@ We want to add a new app feature that lets users bookmark an article to easily c
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-	private lateinit var navController : NavHostController
-	
-	
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContent {
-			To_Do_WithComposeTheme {
-			navController = rememberNavController()
-				SetupNavigation(navController = navController)
-			}
-		}
-	}
+    private lateinit var navController: NavHostController
+      val sharedViewModel: SharedViewModel by viewModels()
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            To_Do_WithComposeTheme {
+                navController = rememberNavController()
+                SetupNavigation(
+                    navController = navController,
+                    sharedViewModel = sharedViewModel
+                )
+            }
+        }
+    }
 }

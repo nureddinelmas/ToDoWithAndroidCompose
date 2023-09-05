@@ -13,27 +13,34 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.to_do_withcompose.data.models.Priority
 import com.example.to_do_withcompose.ui.theme.fabBackgroundColor
 import com.example.to_do_withcompose.ui.theme.topBarAppContentColor
+import com.example.to_do_withcompose.ui.viewModels.SharedViewModel
+import com.example.to_do_withcompose.util.SearchAppBarState
 
 
 @Composable
 fun ListScreen(
     navigateToListScreen: (Int) -> Unit,
-    onSearcClicked: () -> Unit,
-    onSortClicked: (Priority) -> Unit,
-    onDeleteClicked: () -> Unit
+    sharedViewModel: SharedViewModel
+
 ) {
+
+    val searchAppBarState: SearchAppBarState by sharedViewModel.searchAppBarState
+    val searchTextState: String by sharedViewModel.searchTextState
+
+
     Scaffold(
         topBar = {
             ListAppBar(
-                onSearchClicked = onSearcClicked,
-                onSortClicked = onSortClicked,
-                onDeleteClicked = onDeleteClicked
+                sharedViewModel,
+                searchAppBarState,
+                searchTextState
             )
         },
         content = {},
@@ -56,8 +63,8 @@ fun ListFab(onFabClicked: (Int) -> Unit) {
 }
 
 
-@Composable
-@Preview
-fun ListScreenPreview() {
-    ListScreen(navigateToListScreen = {}, onSearcClicked = {}, onSortClicked = {}, onDeleteClicked = {})
-}
+//@Composable
+//@Preview
+//fun ListScreenPreview() {
+//    ListScreen(navigateToListScreen = {})
+//}

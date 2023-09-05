@@ -47,25 +47,47 @@ import com.example.to_do_withcompose.data.models.Priority
 import com.example.to_do_withcompose.ui.theme.TOP_APP_BAR_HEIGHT
 import com.example.to_do_withcompose.ui.theme.topBarAppBackgroundColor
 import com.example.to_do_withcompose.ui.theme.topBarAppContentColor
+import com.example.to_do_withcompose.ui.viewModels.SharedViewModel
+import com.example.to_do_withcompose.util.SearchAppBarState
 
 
 @Composable
 fun ListAppBar(
-    onSearchClicked: () -> Unit,
-    onSortClicked: (Priority) -> Unit,
-    onDeleteClicked: () -> Unit
+    sharedViewModel: SharedViewModel,
+    searchAppBarState: SearchAppBarState,
+    searchTextState: String
 ) {
-    SearchAppBar(
-        text = "Search",
-        onTextChanged = {},
-        onClosedClicked = {}
-    ) {}
 
-    /*DefaultListAppBar(
-        onSearchClicked = onSearchClicked,
-        onSortClicked = onSortClicked,
-        onDeleteClicked = onDeleteClicked
-    )*/
+
+    when (searchAppBarState) {
+        SearchAppBarState.CLOSED -> {
+            DefaultListAppBar(
+                onSearchClicked = {
+                    sharedViewModel.searchAppBarState.value =
+                        SearchAppBarState.OPENED
+                },
+                onSortClicked = {},
+                onDeleteClicked = {}
+            )
+        }
+
+        else -> {
+            SearchAppBar(
+                text = searchTextState,
+                onTextChanged = { newText ->
+                    sharedViewModel.searchTextState.value = newText
+
+                },
+                onClosedClicked = {
+                    sharedViewModel.searchAppBarState.value =
+                        SearchAppBarState.CLOSED
+                    sharedViewModel.searchTextState.value = ""
+                },
+                onSearchClicked = {}
+            )
+        }
+    }
+
 
 }
 
