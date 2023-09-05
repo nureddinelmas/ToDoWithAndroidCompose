@@ -1,38 +1,63 @@
 package com.example.to_do_withcompose.ui.screens
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.to_do_withcompose.data.models.Priority
+import com.example.to_do_withcompose.ui.theme.fabBackgroundColor
+import com.example.to_do_withcompose.ui.theme.topBarAppContentColor
 
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun ListScreen(navigateToListScreen: (Int) -> Unit) {
+fun ListScreen(
+    navigateToListScreen: (Int) -> Unit,
+    onSearcClicked: () -> Unit,
+    onSortClicked: (Priority) -> Unit,
+    onDeleteClicked: () -> Unit
+) {
     Scaffold(
         topBar = {
-            ListAppBar()
+            ListAppBar(
+                onSearchClicked = onSearcClicked,
+                onSortClicked = onSortClicked,
+                onDeleteClicked = onDeleteClicked
+            )
         },
-        content = { },
+        content = {},
+
+
         floatingActionButton = {
             ListFab(onFabClicked = navigateToListScreen)
-        })
+        }
+
+    )
 }
 
 @Composable
 fun ListFab(onFabClicked: (Int) -> Unit) {
-    FloatingActionButton(onClick = { onFabClicked(2) }) {
+    FloatingActionButton(
+        onClick = { onFabClicked(2) }, backgroundColor = MaterialTheme.colors.fabBackgroundColor
+    ) {
         Icon(imageVector = Icons.Filled.Add, contentDescription = "Add Button")
     }
 }
 
+
 @Composable
 @Preview
 fun ListScreenPreview() {
-    ListScreen(navigateToListScreen = {})
+    ListScreen(navigateToListScreen = {}, onSearcClicked = {}, onSortClicked = {}, onDeleteClicked = {})
 }

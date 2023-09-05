@@ -30,3 +30,7 @@ get() = if (isLight) Color.Black else LightGray
 val Colors.topBarAppBackgroundColor : Color
 @Composable
 get() = if (isLight) Purple80 else Black
+
+val Colors.fabBackgroundColor : Color
+@Composable
+get() = if (isLight) Purple80 else Black

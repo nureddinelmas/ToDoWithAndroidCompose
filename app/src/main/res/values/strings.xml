@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">To_Do_WithCompose</string>
+    <string name="search_action">Search Action</string>
+    <string name="delete_all_items_action"> Delete All Items Action</string>
 </resources>

@@ -18,6 +18,6 @@ fun NavGraphBuilder.listComposable(
 			type = NavType.StringType
 		})
 	){
-	ListScreen(navigateToListScreen = navigateToTaskScreen)
+	ListScreen(navigateToListScreen = navigateToTaskScreen, onSearcClicked = {}, onSortClicked = {}, onDeleteClicked = {})
 	}
 }

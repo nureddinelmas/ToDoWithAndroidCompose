@@ -6,9 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.example.to_do_withcompose.navigation.destinations.listComposable
 import com.example.to_do_withcompose.navigation.destinations.taskComposable
-import com.example.to_do_withcompose.navigation.destinations.updateComposable
 import com.example.to_do_withcompose.util.Constants.LIST_SCREEN
-import com.example.to_do_withcompose.util.Constants.UPDATE_SCREEN
 
 
 @Composable
@@ -20,7 +18,6 @@ fun SetupNavigation(navController: NavHostController) {
 
     NavHost(navController = navController, startDestination = LIST_SCREEN) {
 
-        updateComposable()
 
 
         listComposable(
