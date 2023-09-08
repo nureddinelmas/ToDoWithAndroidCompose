@@ -27,7 +27,7 @@ We want to add a new app feature that lets users bookmark an article to easily c
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private lateinit var navController: NavHostController
-      val sharedViewModel: SharedViewModel by viewModels()
+      private val sharedViewModel: SharedViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

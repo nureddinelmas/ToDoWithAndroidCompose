@@ -24,7 +24,7 @@ object DatabaseModule {
 	) = Room.databaseBuilder(
 		context,
 		TodoDatabase::class.java,
-		DATABASE_NAME)
+		DATABASE_NAME).build()
 	
 	
 	@Singleton
